@@ -4,14 +4,17 @@
   "description": "Sample Node.js 18 project",
   "main": "index.js",
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=v22"
   },
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
     "test": "jest"
   },
-  "keywords": ["node", "sample"],
+  "keywords": [
+    "node",
+    "sample"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
