@@ -1,17 +1,27 @@
-const express = require('express');
-const app = express();
-const port = process.env.PORT || 3000;
+// index.js
+const url = require('url');
 
-app.use(express.json());
+/**
+ * A function that parses a URL using the legacy url.parse() method.
+ * This method's behavior changed in Node.js v21, making it a
+ * potential breaking change when upgrading from v20.
+ * @param {string} urlString - The URL to parse.
+ * @returns {object} The parsed URL object.
+ */
+function parseLegacyUrl(urlString) {
+  console.log(`Parsing URL: ${urlString}`);
+  // This is the line your agent should detect as a breaking change for Node v21+.
+  const parsedUrl = url.parse(urlString);
+  return parsedUrl;
+}
 
-app.get('/', (req, res) => {
-  res.json({
-    message: 'Welcome to Node.js 18 Sample Project Test',
-    nodeVersion: process.version
-  });
-});
+// --- Main execution ---
+const myUrl = 'http://example.com/path?query=string#hash';
+const parsed = parseLegacyUrl(myUrl);
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-  console.log(`Node.js version: ${process.version}`);
-}); 
+console.log('--- Parsed URL Object ---');
+console.log(parsed);
+
+console.log('\nThis script runs correctly on Node v20.');
+console.log('However, the use of "url.parse()" is a known breaking change in Node v21.');
+
